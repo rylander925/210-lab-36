@@ -16,8 +16,11 @@ void Read(StringBinaryTree& tree, string filename);
 int main() {
     StringBinaryTree tree;
     const string FILENAME = "codes.txt";
+
+    //Read data from file to tree
     Read(tree, FILENAME);
 
+    //Execute menu functionality
     enum MenuOption {ADD = 1, DELETE = 2, SEARCH = 3, MODIFY = 4, QUIT = 5};
     int choice;
     string val;
@@ -38,7 +41,7 @@ int main() {
                 cout << "\tOption must be an integer" << endl;
                 choice = -1;
             } else if (choice < ADD || choice > QUIT) {
-                cout << "\tOption must between" << ADD << "and" << QUIT << endl;
+                cout << "\tOption must between " << ADD << " and " << QUIT << endl;
             }
             cin.clear();
             cin.ignore(STREAM_IGNORE_CHARS, '\n');
