@@ -1,13 +1,14 @@
-// Specification file for the IntBinaryTree class
+// Specification file for the StringBinaryTree class
 #ifndef STRINGBINARYTREE_H
 #define STRINGBINARYTREE_H
 
 #include <string>
+using namespace std;
 
-// The IntBinaryTree class manages a binary tree of integers.
+// The StringBinaryTree class manages a binary tree of integers.
 class StringBinaryTree {
 private:
-   // TreeNode is a private structure for IntBinaryTree nodes.
+   // TreeNode is a private structure for StringBinaryTree nodes.
    struct TreeNode {
       string value;         // The value in the node
       TreeNode *left;    // Pointer to left child node
@@ -44,7 +45,7 @@ public:
    void displayPostOrder() const   {  displayPostOrder(root); }
 };
 
-// Implementation file for the IntBinaryTree class
+// Implementation file for the StringBinaryTree class
 #include <iostream>
 #include "StringBinaryTree.h"
 using namespace std;
@@ -61,14 +62,14 @@ void StringBinaryTree::insert(TreeNode *&nodePtr, TreeNode *&newNode) {
       insert(nodePtr->right, newNode);    // Search the right branch
 }
 
-// insertNode creates a new node to hold num as its value,
+// insertNode creates a new node to hold val as its value,
 // and passes it to the insert function.                  
-void StringBinaryTree::insertNode(string num) {
+void StringBinaryTree::insertNode(string val) {
    TreeNode *newNode;      // Pointer to a new node.
 
-   // Create a new node and store num in it.
+   // Create a new node and store val in it.
    newNode = new TreeNode;
-   newNode->value = num;
+   newNode->value = val;
    newNode->left = newNode->right = nullptr;
    
    // Insert the node.
@@ -91,13 +92,13 @@ void StringBinaryTree::destroySubTree(TreeNode *nodePtr) {
 // searchNode determines if a value is present in  
 // the tree. If so, the function returns true.     
 // Otherwise, it returns false.                    
-bool StringBinaryTree::searchNode(string num) {
+bool StringBinaryTree::searchNode(string val) {
    TreeNode *nodePtr = root;
 
    while (nodePtr)    {
-      if (nodePtr->value == num)
+      if (nodePtr->value == val)
          return true;
-      else if (num < nodePtr->value)
+      else if (val < nodePtr->value)
          nodePtr = nodePtr->left;
       else
          nodePtr = nodePtr->right;
@@ -106,18 +107,18 @@ bool StringBinaryTree::searchNode(string num) {
 }
 
 // remove calls deleteNode to delete the      
-// node whose value member is the same as num.
-void StringBinaryTree::remove(string num) {
-   deleteNode(num, root);
+// node whose value member is the same as val.
+void StringBinaryTree::remove(string val) {
+   deleteNode(val, root);
 }
 
 // deleteNode deletes the node whose value 
-// member is the same as num.              
-void StringBinaryTree::deleteNode(string num, TreeNode *&nodePtr) {
-   if (num < nodePtr->value)
-      deleteNode(num, nodePtr->left);
-   else if (num > nodePtr->value)
-      deleteNode(num, nodePtr->right);
+// member is the same as val.              
+void StringBinaryTree::deleteNode(string val, TreeNode *&nodePtr) {
+   if (val < nodePtr->value)
+      deleteNode(val, nodePtr->left);
+   else if (val > nodePtr->value)
+      deleteNode(val, nodePtr->right);
    else
       makeDeletion(nodePtr);
 }

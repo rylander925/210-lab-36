@@ -9,17 +9,16 @@ IDE Used: Visual Studio Code
 using namespace std;
 
 int main() {
-    const int NUMS = 10;
-    //test an int tree
     StringBinaryTree tree;
-    int num;
-    for (int i = 0; i < NUMS; i++) {
-        num = rand() % NUMS;
-        cout << num << " ";
-        tree.insertNode(to_string(num));
-    }
-    cout << endl;
+    tree.insertNode("hi");
+    tree.insertNode("salutations");
+    tree.insertNode("hello");
+    tree.insertNode("high");
     tree.displayInOrder();
+    tree.remove("hello");
+    tree.displayInOrder();
+    tree.displayPreOrder();
+    tree.displayPostOrder();
 
     return 0;
 }
