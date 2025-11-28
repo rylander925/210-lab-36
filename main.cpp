@@ -18,7 +18,7 @@ int main() {
     const string FILENAME = "codes.txt";
     Read(tree, FILENAME);
 
-    enum MenuOption {ADD = 1, DELETE = 2, SEARCH = 3, QUIT = 4};
+    enum MenuOption {ADD = 1, DELETE = 2, SEARCH = 3, MODIFY = 4, QUIT = 5};
     int choice;
     string val;
     do {
@@ -27,7 +27,8 @@ int main() {
              << " 1. Add"    << endl
              << " 2. Delete" << endl
              << " 3. Search" << endl
-             << " 4. Quit"   << endl;
+             << " 4. Modify"   << endl
+             << " 5. Quit"   << endl;
 
         //Validate input for menu choice
         cout << "Enter an option > ";
@@ -70,6 +71,17 @@ int main() {
                 cout << "Node \"" << val << "\" was " << (tree.searchNode(val) ? "found" : "not found") << endl;
 
                 break;
+            case MODIFY: //Checks for an inputted value in the BST, then modifies it if found
+                cout << "Enter item to modify > ";
+                getline(cin, val);
+                if (tree.searchNode(val)) {
+                    tree.remove(val);
+                    cout << "Node \"" << val << "\" found. Enter replacement value > ";
+                    getline(cin, val);
+                    tree.insertNode(val);
+                } else {
+                    cout << "Node \"" << val << "\" not found." << endl;
+                }
         }
         cout << endl;
     } while (choice != QUIT);
