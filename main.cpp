@@ -15,6 +15,7 @@ int main() {
     StringBinaryTree tree;
     const string FILENAME = "codes.txt";
     Read(tree, FILENAME);
+    
     tree.displayInOrder();
     return 0;
 }
