@@ -9,14 +9,52 @@ IDE Used: Visual Studio Code
 #include "StringBinaryTree.h"
 using namespace std;
 
+const int STREAM_IGNORE_CHARS = 100;
+
 void Read(StringBinaryTree& tree, string filename);
 
 int main() {
     StringBinaryTree tree;
     const string FILENAME = "codes.txt";
     Read(tree, FILENAME);
-    
-    tree.displayInOrder();
+
+    enum MenuOption {ADD = 1, DELETE = 2, SEARCH = 3, QUIT = 4};
+    int choice;
+    string val;
+    do {
+        //Display menu
+        cout << "BST Options:" << endl
+             << " 1. Add"    << endl
+             << " 2. Delete" << endl
+             << " 3. Search" << endl
+             << " 4. Quit"   << endl;
+
+        //Validate input for menu choice
+        cout << "Enter an option: > ";
+        do {
+            cin >> choice;
+            if (cin.fail()) {
+                cout << "\tOption must be an integer" << endl;
+                choice = -1;
+            } else if (choice < ADD || choice > QUIT) {
+                cout << "\tOption must between" << ADD << "and" << QUIT << endl;
+            }
+            cin.clear();
+            cin.ignore(STREAM_IGNORE_CHARS, '\n');
+        } while (choice < ADD || choice > QUIT);
+
+        //Run function based on choice
+        switch (choice) {
+            case ADD:
+                cout << "Enter an item to add: " << endl;
+                getline(cin, val);
+                tree.insertNode(val);
+                break;
+            case DELETE:
+            case SEARCH:
+
+        }
+    } while (choice != QUIT);
     return 0;
 }
 
