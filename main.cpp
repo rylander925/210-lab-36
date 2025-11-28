@@ -30,7 +30,7 @@ int main() {
              << " 4. Quit"   << endl;
 
         //Validate input for menu choice
-        cout << "Enter an option: > ";
+        cout << "Enter an option > ";
         do {
             cin >> choice;
             if (cin.fail()) {
@@ -45,15 +45,33 @@ int main() {
 
         //Run function based on choice
         switch (choice) {
-            case ADD:
-                cout << "Enter an item to add: " << endl;
+            case ADD: //Add inputted string to BST
+                cout << "Enter an item to add > ";
                 getline(cin, val);
                 tree.insertNode(val);
-                break;
-            case DELETE:
-            case SEARCH:
 
+                break;
+            case DELETE: //Removes inputted string from BST
+                cout << "Enter an item to delete > ";
+                getline(cin, val);
+
+                //Outputs an error message if node is not in the tree before deleting
+                if (!tree.searchNode(val)) {
+                    cout << "Node \"" << val << "\" is not in tree" << endl;
+                } else {
+                    tree.remove(val);
+                    cout << "One instance of node \"" << val << "\" successfully removed" << endl;
+                }
+
+                break;
+            case SEARCH: //Checks whether inputted string is in BST
+                cout << "Enter an item to search for > ";
+                getline(cin, val);
+                cout << "Node \"" << val << "\" was " << (tree.searchNode(val) ? "found" : "not found") << endl;
+
+                break;
         }
+        cout << endl;
     } while (choice != QUIT);
     return 0;
 }
